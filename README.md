@@ -1,2 +1,2 @@
 # QT_projetos
-Brincando com QTCreator
+Aprendendo o básico de QTCreator.

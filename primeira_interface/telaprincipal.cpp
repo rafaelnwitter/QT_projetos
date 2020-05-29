@@ -12,3 +12,8 @@ TelaPrincipal::~TelaPrincipal()
 {
     delete ui;
 }
+
+void TelaPrincipal::on_pushButton_clicked()
+{
+    ui->label->setText("Hello World!!!");
+}

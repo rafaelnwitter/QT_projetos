@@ -15,6 +15,9 @@ public:
     explicit TelaPrincipal(QWidget *parent = 0);
     ~TelaPrincipal();
 
+private slots:
+    void on_pushButton_clicked();
+
 private:
     Ui::TelaPrincipal *ui;
 };

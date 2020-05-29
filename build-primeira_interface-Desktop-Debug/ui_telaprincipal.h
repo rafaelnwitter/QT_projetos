@@ -17,10 +17,13 @@
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
+#include <QtWidgets/QProgressBar>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QSlider>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QToolBar>
 #include <QtWidgets/QToolButton>
+#include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -32,6 +35,11 @@ public:
     QToolButton *toolButton;
     QPushButton *pushButton;
     QLabel *label;
+    QWidget *layoutWidget;
+    QVBoxLayout *verticalLayout;
+    QProgressBar *progressBar;
+    QSlider *horizontalSlider;
+    QPushButton *pushButton_2;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -51,7 +59,31 @@ public:
         pushButton->setGeometry(QRect(10, 0, 131, 61));
         label = new QLabel(centralWidget);
         label->setObjectName(QStringLiteral("label"));
-        label->setGeometry(QRect(80, 120, 241, 41));
+        label->setGeometry(QRect(150, 10, 241, 41));
+        layoutWidget = new QWidget(centralWidget);
+        layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
+        layoutWidget->setGeometry(QRect(0, 90, 181, 51));
+        verticalLayout = new QVBoxLayout(layoutWidget);
+        verticalLayout->setSpacing(6);
+        verticalLayout->setContentsMargins(11, 11, 11, 11);
+        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
+        verticalLayout->setContentsMargins(0, 0, 0, 0);
+        progressBar = new QProgressBar(layoutWidget);
+        progressBar->setObjectName(QStringLiteral("progressBar"));
+        progressBar->setMaximum(101);
+        progressBar->setValue(0);
+
+        verticalLayout->addWidget(progressBar);
+
+        horizontalSlider = new QSlider(layoutWidget);
+        horizontalSlider->setObjectName(QStringLiteral("horizontalSlider"));
+        horizontalSlider->setOrientation(Qt::Horizontal);
+
+        verticalLayout->addWidget(horizontalSlider);
+
+        pushButton_2 = new QPushButton(centralWidget);
+        pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
+        pushButton_2->setGeometry(QRect(80, 210, 121, 31));
         TelaPrincipal->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(TelaPrincipal);
         menuBar->setObjectName(QStringLiteral("menuBar"));
@@ -66,6 +98,7 @@ public:
 
         retranslateUi(TelaPrincipal);
         QObject::connect(toolButton, SIGNAL(clicked()), TelaPrincipal, SLOT(close()));
+        QObject::connect(horizontalSlider, SIGNAL(valueChanged(int)), progressBar, SLOT(setValue(int)));
 
         QMetaObject::connectSlotsByName(TelaPrincipal);
     } // setupUi
@@ -76,6 +109,7 @@ public:
         toolButton->setText(QApplication::translate("TelaPrincipal", "Sair", Q_NULLPTR));
         pushButton->setText(QApplication::translate("TelaPrincipal", "Mostrar mensagem", Q_NULLPTR));
         label->setText(QApplication::translate("TelaPrincipal", "A mensagem ser\303\241 mostrada aqui.", Q_NULLPTR));
+        pushButton_2->setText(QApplication::translate("TelaPrincipal", "Verificar vers\303\243o.", Q_NULLPTR));
     } // retranslateUi
 
 };
